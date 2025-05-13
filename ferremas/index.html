@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FERREMAS - Inicio</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>FERREMAS</h1>
+        <nav>
+            <a href="#">Inicio</a>
+            <a href="#">Catálogo</a>
+            <div id="user-area">
+                <span id="user-name"></span>
+                <a href="html/login.html" id="login-link" class="btn-login">Iniciar Sesión</a>
+                <button id="logout-btn" class="hidden">Cerrar Sesión</button>
+            </div>
+            <button id="theme-toggle">Modo Oscuro</button>
+            <a href="html/cart.html" id="cart-link">🛒 <span id="cart-count">0</span></a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="banner">
+            <img src="https://via.placeholder.com/1200x300" alt="Ofertas especiales">
+        </section>
+
+        <section id="featured-products">
+            <h2>Productos Destacados</h2>
+            <div class="products-grid" id="products-container">
+                <!-- Productos cargados por JavaScript -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2023 FERREMAS - Todos los derechos reservados</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
