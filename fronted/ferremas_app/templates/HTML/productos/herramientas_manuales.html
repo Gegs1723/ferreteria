@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Herramientas Manuales - Ferretería Ferramas{% endblock %}
+
+{% block content %}
+<section class="container my-5">
+  <h2 class="text-center mb-4 display-4 fw-bold text-primary">Herramientas Manuales</h2>
+  <div class="row g-4">
+    <!-- Martillos -->
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm">
+        <img src="{% static 'imagenes/martillo.jpg' %}" class="card-img-top" alt="Martillo">
+        <div class="card-body">
+          <h5 class="card-title">Martillos</h5>
+          <p class="card-text">Variedad de martillos para todo tipo de trabajo.</p>
+        </div>
+      </div>
+    </div>
+    <!-- Destornilladores -->
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm">
+        <img src="{% static 'imagenes/destornillador.jpg' %}" class="card-img-top" alt="Destornillador">
+        <div class="card-body">
+          <h5 class="card-title">Destornilladores</h5>
+          <p class="card-text">Destornilladores de precisión y fuerza.</p>
+        </div>
+      </div>
+    </div>
+    <!-- Llaves -->
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm">
+        <img src="{% static 'imagenes/llave.jpg' %}" class="card-img-top" alt="Llave">
+        <div class="card-body">
+          <h5 class="card-title">Llaves</h5>
+          <p class="card-text">Llaves ajustables y fijas para diversas aplicaciones.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Sección dinámica de productos desde la API -->
+<section class="container my-5">
+  <h3 class="text-center mb-4 text-success">Herramientas Manuales desde la API</h3>
+  <div class="row g-4" id="api-herramientas-manuales"></div>
+</section>
+
+<script src="{% static 'js/productos.js' %}"></script>
+{% endblock %}

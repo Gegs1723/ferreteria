@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Herramientas Eléctricas - Ferretería Ferramas{% endblock %}
+
+{% block content %}
+<section class="container my-5">
+  <h2 class="text-center mb-4 display-4 fw-bold text-primary">Herramientas Eléctricas</h2>
+  <div class="row g-4">
+    <!-- Taladros -->
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm">
+        <img src="{% static 'imagenes/taladro.jpg' %}" class="card-img-top" alt="Taladro">
+        <div class="card-body">
+          <h5 class="card-title">Taladros</h5>
+          <p class="card-text">Taladros de alto rendimiento para profesionales.</p>
+        </div>
+      </div>
+    </div>
+    <!-- Sierras -->
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm">
+        <img src="{% static 'imagenes/sierra.jpg' %}" class="card-img-top" alt="Sierra">
+        <div class="card-body">
+          <h5 class="card-title">Sierras</h5>
+          <p class="card-text">Sierras eléctricas para cortes precisos.</p>
+        </div>
+      </div>
+    </div>
+    <!-- Lijadoras -->
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm">
+        <img src="{% static 'imagenes/lijadora.jpg' %}" class="card-img-top" alt="Lijadora">
+        <div class="card-body">
+          <h5 class="card-title">Lijadoras</h5>
+          <p class="card-text">Lijadoras para acabados perfectos.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Sección dinámica de productos desde la API -->
+<section class="container my-5">
+  <h3 class="text-center mb-4 text-success">Herramientas Eléctricas desde la API</h3>
+  <div class="row g-4" id="api-herramientas-electricas"></div>
+</section>
+
+<script src="{% static 'js/productos.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Cascos - Ferretería Ferramas{% endblock %}
+
+{% block content %}
+<section class="container my-5">
+  <h2 class="text-center mb-4 display-4 fw-bold text-primary">Cascos</h2>
+  <div class="row g-4">
+    <!-- Casco de Seguridad -->
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm">
+        <img src="{% static 'imagenes/casco_seguridad.jpg' %}" class="card-img-top" alt="Casco de Seguridad">
+        <div class="card-body">
+          <h5 class="card-title">Casco de Seguridad</h5>
+          <p class="card-text">Protección esencial para la cabeza en obras.</p>
+        </div>
+      </div>
+    </div>
+    <!-- Casco con Visera -->
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm">
+        <img src="{% static 'imagenes/casco_visera.jpg' %}" class="card-img-top" alt="Casco con Visera">
+        <div class="card-body">
+          <h5 class="card-title">Casco con Visera</h5>
+          <p class="card-text">Incluye visera para protección facial adicional.</p>
+        </div>
+      </div>
+    </div>
+    <!-- Casco Ajustable -->
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm">
+        <img src="{% static 'imagenes/casco_ajustable.jpg' %}" class="card-img-top" alt="Casco Ajustable">
+        <div class="card-body">
+          <h5 class="card-title">Casco Ajustable</h5>
+          <p class="card-text">Ajuste cómodo para largas jornadas de trabajo.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Sección dinámica de productos desde la API -->
+<section class="container my-5">
+  <h3 class="text-center mb-4 text-success">Cascos desde la API</h3>
+  <div class="row g-4" id="api-cascos"></div>
+</section>
+
+<script src="{% static 'js/productos.js' %}"></script>
+{% endblock %}

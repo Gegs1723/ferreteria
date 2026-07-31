@@ -1,0 +1,121 @@
+<!-- filepath: templates/HTML/usuarios/crud_usuarios.html -->
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}CRUD Usuarios - Ferretería Ferramas{% endblock %}
+
+{% block content %}
+
+<section class="container my-5">
+  <h2 class="text-center mb-4 display-4 fw-bold text-primary">
+    CRUD de Usuarios
+  </h2>
+
+  <!-- Formulario en línea para crear/editar usuario -->
+  <form id="form-usuario" class="mb-4">
+    <input type="hidden" name="id" id="usuario-id" />
+
+    <div class="form-grid">
+      <div>
+        <div class="form-group-row">
+          <label for="usuario-nombre" class="form-label">Nombre</label>
+          <input type="text" class="form-control ms-2" name="nombre" id="usuario-nombre" required />
+        </div>
+        <div class="form-group-row">
+          <label for="usuario-apellido" class="form-label">Apellido</label>
+          <input type="text" class="form-control ms-2" name="apellido" id="usuario-apellido" required />
+        </div>
+        <div class="form-group-row">
+          <label for="usuario-email" class="form-label">Email</label>
+          <input type="email" class="form-control ms-2" name="email" id="usuario-email" required />
+        </div>
+        <div class="form-group-row">
+          <label for="usuario-password" class="form-label">Contraseña</label>
+          <input type="password" class="form-control ms-2" name="password" id="usuario-password" />
+          <small class="text-muted ms-2">Déjalo vacío para no cambiar la contraseña.</small>
+        </div>
+        <div class="form-group-row">
+          <label for="usuario-telefono" class="form-label">Teléfono</label>
+          <input type="text" class="form-control ms-2" name="telefono" id="usuario-telefono" />
+        </div>
+        <div class="form-group-row">
+          <label for="usuario-fecha-nacimiento" class="form-label">Fecha Nacimiento</label>
+          <input type="date" class="form-control ms-2" name="fechaNacimiento" id="usuario-fecha-nacimiento" />
+        </div>
+        <div class="form-group-row">
+          <label for="usuario-direccion" class="form-label">Dirección</label>
+          <input type="text" class="form-control ms-2" name="direccion" id="usuario-direccion" />
+        </div>
+        <div class="form-group-row">
+          <label class="form-label">Tipo Cliente</label>
+          <select class="form-control ms-2" name="tipoCliente" id="usuario-tipo-cliente" required>
+            <option value="">Selecciona tipo</option>
+            <option value="particular">Particular</option>
+            <option value="profesional">Profesional</option>
+          </select>
+        </div>
+        <div class="form-group-row">
+          <label class="form-label">Newsletter</label>
+          <select class="form-control ms-2" name="newsletter" id="usuario-newsletter">
+            <option value="false">No</option>
+            <option value="true">Sí</option>
+          </select>
+        </div>
+        <div class="form-group-row">
+          <label class="form-label" for="usuario-rol">Rol</label>
+          <select class="form-control ms-2" name="rol" id="usuario-rol" required>
+            <option value="">Selecciona rol</option>
+            <option value="ADMIN">ADMIN</option>
+            <option value="BODEGUERO">BODEGUERO</option>
+            <option value="VENDEDOR">VENDEDOR</option>
+            <option value="CONTADOR">CONTADOR</option>
+            <option value="CLIENTE">CLIENTE</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="form-group-row" style="justify-content: flex-end; margin-top: 1.5rem; margin-bottom: 1.5rem;">
+      <button type="submit" class="btn btn-primary px-4 py-2" id="btn-guardar-usuario" style="width: auto; min-width: 120px">
+        Guardar
+      </button>
+    </div>
+  </form>
+
+  <!-- Buscador de usuarios -->
+  <form id="form-busqueda-usuarios" class="mb-3 d-flex" autocomplete="off">
+    <input
+      type="text"
+      id="buscador-usuarios"
+      class="form-control me-2"
+      placeholder="Buscar usuario por nombre, apellido o email"
+    />
+    <button type="submit" class="btn btn-primary">Buscar</button>
+    <button type="button" id="btn-limpiar-busqueda-usuarios" class="btn btn-secondary ms-2">
+      Limpiar
+    </button>
+  </form>
+
+  <!-- Tabla de usuarios -->
+  <div class="table-responsive">
+    <table class="table table-bordered align-middle text-center">
+      <thead class="table-light">
+        <tr>
+          <th>ID</th>
+          <th>Acciones</th>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Email</th>
+          <th>Teléfono</th>
+          <th>Fecha Nacimiento</th>
+          <th>Dirección</th>
+          <th>Tipo Cliente</th>
+          <th>Newsletter</th>
+          <th>Rol</th>
+        </tr>
+      </thead>
+      <tbody id="tabla-usuarios"></tbody>
+    </table>
+  </div>
+</section>
+
+<script src="{% static 'js/crud_usuarios.js' %}"></script>
+{% endblock %}

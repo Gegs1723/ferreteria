@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Equipos de Seguridad - Ferretería Ferramas{% endblock %}
+
+{% block content %}
+<section class="container my-5">
+  <h2 class="text-center mb-4 display-4 fw-bold text-primary">Equipos de Seguridad</h2>
+  <div class="row g-4">
+    <!-- Cascos -->
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm">
+        <img src="{% static 'imagenes/casco.jpg' %}" class="card-img-top" alt="Casco">
+        <div class="card-body">
+          <h5 class="card-title">Cascos</h5>
+          <p class="card-text">Cascos de seguridad para protección en el trabajo.</p>
+        </div>
+      </div>
+    </div>
+    <!-- Guantes -->
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm">
+        <img src="{% static 'imagenes/guantes.jpg' %}" class="card-img-top" alt="Guantes">
+        <div class="card-body">
+          <h5 class="card-title">Guantes</h5>
+          <p class="card-text">Guantes resistentes para diversas tareas.</p>
+        </div>
+      </div>
+    </div>
+    <!-- Lentes de Seguridad -->
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm">
+        <img src="{% static 'imagenes/lentes.jpg' %}" class="card-img-top" alt="Lentes de Seguridad">
+        <div class="card-body">
+          <h5 class="card-title">Lentes de Seguridad</h5>
+          <p class="card-text">Lentes de seguridad para protección ocular.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Sección dinámica de productos desde la API -->
+<section class="container my-5">
+  <h3 class="text-center mb-4 text-success">Equipos de Seguridad desde la API</h3>
+  <div class="row g-4" id="api-equipos-seguridad"></div>
+</section>
+
+<script src="{% static 'js/productos.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,230 @@
+{% extends "base.html" %}
+{% block title %}Pedidos{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+  <h2 class="mb-4"><i class="fas fa-list me-2"></i>Pedidos</h2>
+
+  {% if messages %}
+    {% for message in messages %}
+      <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+      </div>
+    {% endfor %}
+  {% endif %}
+
+  {% if usuario_rol == "CLIENTE" %}
+    <h4>Mis compras</h4>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Fecha</th>
+          <th>Cliente</th>
+          <th>Productos</th>
+          <th>Total</th>
+          <th>Dirección</th>
+          <th>Tipo de pago</th>
+          <th>Estado</th>
+          <th>Datos de pago</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for pedido in pedidos_cliente %}
+        <tr>
+          <td>{{ pedido.fecha|date:"d/m/Y H:i" }}</td>
+          <td>{{ pedido.usuario }}</td>
+          <td>
+            <ul>
+              {% for prod in pedido.productos %}
+                <li>{{ prod.nombre }} x{{ prod.cantidad }} (${{ prod.precio_unitario }})</li>
+              {% endfor %}
+            </ul>
+          </td>
+          <td>${{ pedido.total|floatformat:0 }}</td>
+          <td>{{ pedido.direccion }}</td>
+          <td>{{ pedido.tipo_pago }}</td>
+          <td>{{ pedido.estado }}</td>
+          <td>
+            {% if pedido.datos_pago %}
+              <pre>{{ pedido.datos_pago|safe }}</pre>
+            {% else %}
+              -
+            {% endif %}
+          </td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="8">No tienes pedidos registrados.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% elif usuario_rol == "VENDEDOR" %}
+    <h4>Pedidos para aprobar/despachar</h4>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Fecha</th>
+          <th>Cliente</th>
+          <th>Productos</th>
+          <th>Total</th>
+          <th>Dirección</th>
+          <th>Tipo de pago</th>
+          <th>Estado</th>
+          <th>Datos de pago</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for pedido in pedidos_por_aprobar %}
+        <tr>
+          <td>{{ pedido.fecha|date:"d/m/Y H:i" }}</td>
+          <td>{{ pedido.usuario }}</td>
+          <td>
+            <ul>
+              {% for prod in pedido.productos %}
+                <li>{{ prod.nombre }} x{{ prod.cantidad }} (${{ prod.precio_unitario }})</li>
+              {% endfor %}
+            </ul>
+          </td>
+          <td>${{ pedido.total|floatformat:0 }}</td>
+          <td>{{ pedido.direccion }}</td>
+          <td>{{ pedido.tipo_pago }}</td>
+          <td>{{ pedido.estado }}</td>
+          <td>
+            {% if pedido.datos_pago %}
+              <pre>{{ pedido.datos_pago|safe }}</pre>
+            {% else %}
+              -
+            {% endif %}
+          </td>
+          <td>
+            <form method="post" action="{% url 'aprobar_pedido' pedido.id %}">
+              {% csrf_token %}
+              <button class="btn btn-success btn-sm" type="submit">Aprobar</button>
+            </form>
+            <form method="post" action="{% url 'rechazar_pedido' pedido.id %}">
+              {% csrf_token %}
+              <button class="btn btn-danger btn-sm" type="submit">Rechazar</button>
+            </form>
+          </td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="9">No hay pedidos pendientes.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% elif usuario_rol == "BODEGUERO" %}
+    <h4>Órdenes de pedido</h4>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Fecha</th>
+          <th>Cliente</th>
+          <th>Productos</th>
+          <th>Total</th>
+          <th>Dirección</th>
+          <th>Tipo de pago</th>
+          <th>Estado</th>
+          <th>Datos de pago</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for pedido in pedidos_bodega %}
+        <tr>
+          <td>{{ pedido.fecha|date:"d/m/Y H:i" }}</td>
+          <td>{{ pedido.usuario }}</td>
+          <td>
+            <ul>
+              {% for prod in pedido.productos %}
+                <li>{{ prod.nombre }} x{{ prod.cantidad }} (${{ prod.precio_unitario }})</li>
+              {% endfor %}
+            </ul>
+          </td>
+          <td>${{ pedido.total|floatformat:0 }}</td>
+          <td>{{ pedido.direccion }}</td>
+          <td>{{ pedido.tipo_pago }}</td>
+          <td>{{ pedido.estado }}</td>
+          <td>
+            {% if pedido.datos_pago %}
+              <pre>{{ pedido.datos_pago|safe }}</pre>
+            {% else %}
+              -
+            {% endif %}
+          </td>
+          <td>
+            <form method="post" action="{% url 'preparar_pedido' pedido.id %}">
+              {% csrf_token %}
+              <button class="btn btn-primary btn-sm" type="submit">Preparar</button>
+            </form>
+            <form method="post" action="{% url 'entregar_a_vendedor' pedido.id %}">
+              {% csrf_token %}
+              <button class="btn btn-warning btn-sm" type="submit">Entregar a vendedor</button>
+            </form>
+          </td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="9">No hay órdenes pendientes.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% elif usuario_rol == "CONTADOR" %}
+    <h4>Pagos y entregas</h4>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Fecha</th>
+          <th>Cliente</th>
+          <th>Productos</th>
+          <th>Total</th>
+          <th>Dirección</th>
+          <th>Tipo de pago</th>
+          <th>Estado</th>
+          <th>Datos de pago</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for pedido in pedidos_contador %}
+        <tr>
+          <td>{{ pedido.fecha|date:"d/m/Y H:i" }}</td>
+          <td>{{ pedido.usuario }}</td>
+          <td>
+            <ul>
+              {% for prod in pedido.productos %}
+                <li>{{ prod.nombre }} x{{ prod.cantidad }} (${{ prod.precio_unitario }})</li>
+              {% endfor %}
+            </ul>
+          </td>
+          <td>${{ pedido.total|floatformat:0 }}</td>
+          <td>{{ pedido.direccion }}</td>
+          <td>{{ pedido.tipo_pago }}</td>
+          <td>{{ pedido.estado }}</td>
+          <td>
+            {% if pedido.datos_pago %}
+              <pre>{{ pedido.datos_pago|safe }}</pre>
+            {% else %}
+              -
+            {% endif %}
+          </td>
+          <td>
+            <form method="post" action="{% url 'confirmar_pago' pedido.id %}">
+              {% csrf_token %}
+              <button class="btn btn-success btn-sm" type="submit">Confirmar pago</button>
+            </form>
+            <form method="post" action="{% url 'registrar_entrega' pedido.id %}">
+              {% csrf_token %}
+              <button class="btn btn-info btn-sm" type="submit">Registrar entrega</button>
+            </form>
+          </td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="9">No hay pagos o entregas pendientes.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <div class="alert alert-warning">Debes iniciar sesión para ver tus pedidos.</div>
+  {% endif %}
+</div>
+{% endblock %}

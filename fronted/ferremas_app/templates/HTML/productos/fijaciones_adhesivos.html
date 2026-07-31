@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Fijaciones y Adhesivos - Ferretería Ferramas{% endblock %}
+
+{% block content %}
+<section class="container my-5">
+  <h2 class="text-center mb-4 display-4 fw-bold text-primary">Fijaciones y Adhesivos</h2>
+  <div class="row g-4">
+    <!-- Fijaciones -->
+    <div class="col-md-6">
+      <div class="card h-100 shadow-sm">
+        <img src="{% static 'imagenes/fijaciones.jpg' %}" class="card-img-top" alt="Fijaciones">
+        <div class="card-body">
+          <h5 class="card-title">Fijaciones</h5>
+          <p class="card-text">Soluciones de fijación para todo tipo de proyectos.</p>
+        </div>
+      </div>
+    </div>
+    <!-- Adhesivos -->
+    <div class="col-md-6">
+      <div class="card h-100 shadow-sm">
+        <img src="{% static 'imagenes/adhesivos.jpg' %}" class="card-img-top" alt="Adhesivos">
+        <div class="card-body">
+          <h5 class="card-title">Adhesivos</h5>
+          <p class="card-text">Adhesivos de alta calidad para uniones duraderas.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Sección dinámica de productos desde la API -->
+<section class="container my-5">
+  <h3 class="text-center mb-4 text-success">Fijaciones y Adhesivos desde la API</h3>
+  <div class="row g-4" id="api-fijaciones-adhesivos"></div>
+</section>
+
+<script src="{% static 'js/productos.js' %}"></script>
+{% endblock %}

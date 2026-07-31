@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Equipos de Medición - Ferretería Ferramas{% endblock %}
+
+{% block content %}
+<section class="container my-5">
+  <h2 class="text-center mb-4 display-4 fw-bold text-primary">Equipos de Medición</h2>
+  <div class="row g-4">
+    <!-- Cintas Métricas -->
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm">
+        <img src="{% static 'imagenes/cinta_metrica.jpg' %}" class="card-img-top" alt="Cinta Métrica">
+        <div class="card-body">
+          <h5 class="card-title">Cintas Métricas</h5>
+          <p class="card-text">Cintas métricas precisas para mediciones exactas.</p>
+        </div>
+      </div>
+    </div>
+    <!-- Niveles -->
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm">
+        <img src="{% static 'imagenes/nivel.jpg' %}" class="card-img-top" alt="Nivel">
+        <div class="card-body">
+          <h5 class="card-title">Niveles</h5>
+          <p class="card-text">Niveles de burbuja y láser para alineaciones perfectas.</p>
+        </div>
+      </div>
+    </div>
+    <!-- Calibradores -->
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm">
+        <img src="{% static 'imagenes/calibrador.jpg' %}" class="card-img-top" alt="Calibrador">
+        <div class="card-body">
+          <h5 class="card-title">Calibradores</h5>
+          <p class="card-text">Calibradores de precisión para mediciones detalladas.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Sección dinámica de productos desde la API -->
+<section class="container my-5">
+  <h3 class="text-center mb-4 text-success">Equipos de Medición desde la API</h3>
+  <div class="row g-4" id="api-equipos-medicion"></div>
+</section>
+
+<script src="{% static 'js/productos.js' %}"></script>
+{% endblock %}

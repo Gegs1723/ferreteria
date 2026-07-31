@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Resultados de búsqueda - Ferretería Ferramas{% endblock %}
+
+{% block content %}
+<section class="container my-5">
+  <h2 class="text-center mb-4 display-4 fw-bold text-primary">Resultados de búsqueda</h2>
+  <div id="busqueda-info" class="text-center mb-4"></div>
+
+  <!-- Filtros y Orden -->
+  <div class="row mb-4">
+    <div class="col-md-3 mb-2">
+      <select class="form-select" id="filtro-marca">
+        <option value="">Todas las marcas</option>
+      </select>
+    </div>
+    <div class="col-md-3 mb-2">
+      <select class="form-select" id="filtro-categoria">
+        <option value="">Todas las categorías</option>
+      </select>
+    </div>
+    <div class="col-md-3 mb-2">
+      <select class="form-select" id="ordenar-por">
+        <option value="relevancia">Ordenar por relevancia</option>
+        <option value="precio_asc">Precio: menor a mayor</option>
+        <option value="precio_desc">Precio: mayor a menor</option>
+        <option value="nombre_asc">Nombre: A-Z</option>
+        <option value="nombre_desc">Nombre: Z-A</option>
+      </select>
+    </div>
+    <div class="col-md-3 mb-2 d-grid">
+      <button class="btn btn-secondary" id="btn-limpiar-filtros">Limpiar filtros</button>
+    </div>
+  </div>
+
+  <div class="row g-4" id="busqueda-productos"></div>
+</section>
+<script src="{% static 'js/productos.js' %}"></script>
+{% endblock %}

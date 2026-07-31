@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Destornilladores - Ferretería Ferramas{% endblock %}
+
+{% block content %}
+<section class="container my-5">
+  <h2 class="text-center mb-4 display-4 fw-bold text-primary">Destornilladores</h2>
+  <div class="row g-4">
+    <!-- Destornillador Plano -->
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm">
+        <img src="{% static 'imagenes/destornillador_plano.jpg' %}" class="card-img-top" alt="Destornillador Plano">
+        <div class="card-body">
+          <h5 class="card-title">Destornillador Plano</h5>
+          <p class="card-text">Para tornillos de cabeza plana.</p>
+        </div>
+      </div>
+    </div>
+    <!-- Destornillador Phillips -->
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm">
+        <img src="{% static 'imagenes/destornillador_phillips.jpg' %}" class="card-img-top" alt="Destornillador Phillips">
+        <div class="card-body">
+          <h5 class="card-title">Destornillador Phillips</h5>
+          <p class="card-text">Para tornillos de cabeza cruz.</p>
+        </div>
+      </div>
+    </div>
+    <!-- Destornillador Torx -->
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm">
+        <img src="{% static 'imagenes/destornillador_torx.jpg' %}" class="card-img-top" alt="Destornillador Torx">
+        <div class="card-body">
+          <h5 class="card-title">Destornillador Torx</h5>
+          <p class="card-text">Para tornillos de cabeza en estrella.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Sección dinámica de productos desde la API -->
+<section class="container my-5">
+  <h3 class="text-center mb-4 text-success">Destornilladores desde la API</h3>
+  <div class="row g-4" id="api-destornilladores"></div>
+</section>
+
+<script src="{% static 'js/productos.js' %}"></script>
+{% endblock %}

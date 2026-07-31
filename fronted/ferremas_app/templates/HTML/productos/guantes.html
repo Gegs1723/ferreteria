@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Guantes - Ferretería Ferramas{% endblock %}
+
+{% block content %}
+<section class="container my-5">
+  <h2 class="text-center mb-4 display-4 fw-bold text-primary">Guantes</h2>
+  <div class="row g-4">
+    <!-- Guantes de Trabajo -->
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm">
+        <img src="{% static 'imagenes/guantes_trabajo.jpg' %}" class="card-img-top" alt="Guantes de Trabajo">
+        <div class="card-body">
+          <h5 class="card-title">Guantes de Trabajo</h5>
+          <p class="card-text">Protección y agarre en tareas pesadas.</p>
+        </div>
+      </div>
+    </div>
+    <!-- Guantes de Látex -->
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm">
+        <img src="{% static 'imagenes/guantes_latex.jpg' %}" class="card-img-top" alt="Guantes de Látex">
+        <div class="card-body">
+          <h5 class="card-title">Guantes de Látex</h5>
+          <p class="card-text">Para trabajos que requieren sensibilidad táctil.</p>
+        </div>
+      </div>
+    </div>
+    <!-- Guantes Anticorte -->
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm">
+        <img src="{% static 'imagenes/guantes_anticorte.jpg' %}" class="card-img-top" alt="Guantes Anticorte">
+        <div class="card-body">
+          <h5 class="card-title">Guantes Anticorte</h5>
+          <p class="card-text">Protección contra cortes y abrasiones.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Sección dinámica de productos desde la API -->
+<section class="container my-5">
+  <h3 class="text-center mb-4 text-success">Guantes desde la API</h3>
+  <div class="row g-4" id="api-guantes"></div>
+</section>
+
+<script src="{% static 'js/productos.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Cemento - Ferretería Ferramas{% endblock %}
+
+{% block content %}
+<section class="container my-5">
+  <h2 class="text-center mb-4 display-4 fw-bold text-primary">Cemento</h2>
+  <div class="row g-4">
+    <!-- Cemento Portland -->
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm">
+        <img src="{% static 'imagenes/cemento_portland.jpg' %}" class="card-img-top" alt="Cemento Portland">
+        <div class="card-body">
+          <h5 class="card-title">Cemento Portland</h5>
+          <p class="card-text">Ideal para todo tipo de construcciones.</p>
+        </div>
+      </div>
+    </div>
+    <!-- Cemento Rápido -->
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm">
+        <img src="{% static 'imagenes/cemento_rapido.jpg' %}" class="card-img-top" alt="Cemento Rápido">
+        <div class="card-body">
+          <h5 class="card-title">Cemento Rápido</h5>
+          <p class="card-text">Para reparaciones rápidas y eficaces.</p>
+        </div>
+      </div>
+    </div>
+    <!-- Cemento Blanco -->
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm">
+        <img src="{% static 'imagenes/cemento_blanco.jpg' %}" class="card-img-top" alt="Cemento Blanco">
+        <div class="card-body">
+          <h5 class="card-title">Cemento Blanco</h5>
+          <p class="card-text">Perfecto para acabados decorativos.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Sección dinámica de productos desde la API -->
+<section class="container my-5">
+  <h3 class="text-center mb-4 text-success">Cementos desde la API</h3>
+  <div class="row g-4" id="api-cemento"></div>
+</section>
+
+<script src="{% static 'js/productos.js' %}"></script>
+{% endblock %}

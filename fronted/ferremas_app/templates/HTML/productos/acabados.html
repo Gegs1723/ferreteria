@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Acabados - Ferretería Ferramas{% endblock %}
+
+{% block content %}
+<section class="container my-5">
+  <h2 class="text-center mb-4 display-4 fw-bold text-primary">Acabados</h2>
+  <div class="row g-4">
+    <!-- Categorías fijas -->
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm">
+        <img src="{% static 'imagenes/pintura.jpg' %}" class="card-img-top" alt="Pintura">
+        <div class="card-body">
+          <h5 class="card-title">Pinturas</h5>
+          <p class="card-text">Pinturas de alta calidad para interiores y exteriores.</p>
+          <!-- Ejemplo de precio fijo multi-moneda (si aplica) -->
+          <!--
+          <span class="precio-multi" data-precio-clp="15000" data-precio-usd="18">CLP $15.000</span>
+          -->
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm">
+        <img src="{% static 'imagenes/barniz.jpg' %}" class="card-img-top" alt="Barniz">
+        <div class="card-body">
+          <h5 class="card-title">Barnices</h5>
+          <p class="card-text">Barnices para proteger y embellecer superficies.</p>
+          <!--
+          <span class="precio-multi" data-precio-clp="12000" data-precio-usd="14">CLP $12.000</span>
+          -->
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm">
+        <img src="{% static 'imagenes/ceramico.jpg' %}" class="card-img-top" alt="Cerámico">
+        <div class="card-body">
+          <h5 class="card-title">Cerámicos</h5>
+          <p class="card-text">Cerámicos de diseño para pisos y paredes.</p>
+          <!--
+          <span class="precio-multi" data-precio-clp="20000" data-precio-usd="24">CLP $20.000</span>
+          -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Productos de acabados desde la API -->
+<section class="container my-5">
+  <h3 class="text-center mb-4 text-success">Productos de Acabados</h3>
+  <div class="row g-4" id="api-acabados">
+    <!-- Los productos insertados por JS deben tener:
+         <span class="precio-multi" data-precio-clp="..." data-precio-usd="...">CLP $...</span>
+    -->
+  </div>
+</section>
+
+<script src="{% static 'js/productos.js' %}"></script>
+{% endblock %}

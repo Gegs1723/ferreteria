@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Taladros - Ferretería Ferramas{% endblock %}
+
+{% block content %}
+<section class="container my-5">
+  <h2 class="text-center mb-4 display-4 fw-bold text-primary">Taladros</h2>
+  <div class="row g-4">
+    <!-- Taladro Percutor -->
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm">
+        <img src="{% static 'imagenes/taladro_percutor.jpg' %}" class="card-img-top" alt="Taladro Percutor">
+        <div class="card-body">
+          <h5 class="card-title">Taladro Percutor</h5>
+          <p class="card-text">Para perforar materiales duros como concreto.</p>
+        </div>
+      </div>
+    </div>
+    <!-- Taladro Inalámbrico -->
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm">
+        <img src="{% static 'imagenes/taladro_inalambrico.jpg' %}" class="card-img-top" alt="Taladro Inalámbrico">
+        <div class="card-body">
+          <h5 class="card-title">Taladro Inalámbrico</h5>
+          <p class="card-text">Portátil y fácil de usar en cualquier lugar.</p>
+        </div>
+      </div>
+    </div>
+    <!-- Taladro de Columna -->
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm">
+        <img src="{% static 'imagenes/taladro_columna.jpg' %}" class="card-img-top" alt="Taladro de Columna">
+        <div class="card-body">
+          <h5 class="card-title">Taladro de Columna</h5>
+          <p class="card-text">Para perforaciones precisas en taller.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Sección dinámica de productos desde la API -->
+<section class="container my-5">
+  <h3 class="text-center mb-4 text-success">Taladros desde la API</h3>
+  <div class="row g-4" id="api-taladros"></div>
+</section>
+<script src="{% static 'js/productos.js' %}"></script>
+{% endblock %}

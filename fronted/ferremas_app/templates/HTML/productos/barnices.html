@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Barnices - Ferretería Ferramas{% endblock %}
+
+{% block content %}
+<section class="container my-5">
+  <h2 class="text-center mb-4 display-4 fw-bold text-primary">Barnices</h2>
+  <div class="row g-4">
+    <!-- Barniz Transparente -->
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm">
+        <img src="{% static 'imagenes/barniz_transparente.jpg' %}" class="card-img-top" alt="Barniz Transparente">
+        <div class="card-body">
+          <h5 class="card-title">Barniz Transparente</h5>
+          <p class="card-text">Protección y brillo para madera.</p>
+        </div>
+      </div>
+    </div>
+    <!-- Barniz Marino -->
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm">
+        <img src="{% static 'imagenes/barniz_marino.jpg' %}" class="card-img-top" alt="Barniz Marino">
+        <div class="card-body">
+          <h5 class="card-title">Barniz Marino</h5>
+          <p class="card-text">Resistente a la humedad y salinidad.</p>
+        </div>
+      </div>
+    </div>
+    <!-- Barniz Tinte -->
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm">
+        <img src="{% static 'imagenes/barniz_tinte.jpg' %}" class="card-img-top" alt="Barniz Tinte">
+        <div class="card-body">
+          <h5 class="card-title">Barniz Tinte</h5>
+          <p class="card-text">Colorea y protege en un solo paso.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Sección dinámica de productos desde la API -->
+<section class="container my-5">
+  <h3 class="text-center mb-4 text-success">Barnices desde la API</h3>
+  <div class="row g-4" id="api-barnices"></div>
+</section>
+
+<script src="{% static 'js/productos.js' %}"></script>
+{% endblock %}

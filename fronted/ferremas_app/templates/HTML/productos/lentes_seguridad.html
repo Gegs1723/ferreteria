@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Lentes de Seguridad - Ferretería Ferramas{% endblock %}
+
+{% block content %}
+<section class="container my-5">
+  <h2 class="text-center mb-4 display-4 fw-bold text-primary">Lentes de Seguridad</h2>
+  <div class="row g-4">
+    <!-- Lentes Transparentes -->
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm">
+        <img src="{% static 'imagenes/lentes_transparentes.jpg' %}" class="card-img-top" alt="Lentes Transparentes">
+        <div class="card-body">
+          <h5 class="card-title">Lentes Transparentes</h5>
+          <p class="card-text">Protección ocular sin distorsión visual.</p>
+        </div>
+      </div>
+    </div>
+    <!-- Lentes Oscuros -->
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm">
+        <img src="{% static 'imagenes/lentes_oscuros.jpg' %}" class="card-img-top" alt="Lentes Oscuros">
+        <div class="card-body">
+          <h5 class="card-title">Lentes Oscuros</h5>
+          <p class="card-text">Protección contra el deslumbramiento solar.</p>
+        </div>
+      </div>
+    </div>
+    <!-- Lentes con Protección Lateral -->
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm">
+        <img src="{% static 'imagenes/lentes_proteccion_lateral.jpg' %}" class="card-img-top" alt="Lentes con Protección Lateral">
+        <div class="card-body">
+          <h5 class="card-title">Lentes con Protección Lateral</h5>
+          <p class="card-text">Cobertura adicional para mayor seguridad.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Sección dinámica de productos desde la API -->
+<section class="container my-5">
+  <h3 class="text-center mb-4 text-success">Lentes de Seguridad desde la API</h3>
+  <div class="row g-4" id="api-lentes-seguridad"></div>
+</section>
+
+<script src="{% static 'js/productos.js' %}"></script>
+{% endblock %}

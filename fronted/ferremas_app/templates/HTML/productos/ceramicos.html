@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Cerámicos - Ferretería Ferramas{% endblock %}
+
+{% block content %}
+<section class="container my-5">
+  <h2 class="text-center mb-4 display-4 fw-bold text-primary">Cerámicos</h2>
+  <div class="row g-4">
+    <!-- Cerámico para Piso -->
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm">
+        <img src="{% static 'imagenes/ceramico_piso.jpg' %}" class="card-img-top" alt="Cerámico para Piso">
+        <div class="card-body">
+          <h5 class="card-title">Cerámico para Piso</h5>
+          <p class="card-text">Duradero y fácil de limpiar.</p>
+        </div>
+      </div>
+    </div>
+    <!-- Cerámico para Pared -->
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm">
+        <img src="{% static 'imagenes/ceramico_pared.jpg' %}" class="card-img-top" alt="Cerámico para Pared">
+        <div class="card-body">
+          <h5 class="card-title">Cerámico para Pared</h5>
+          <p class="card-text">Ideal para baños y cocinas.</p>
+        </div>
+      </div>
+    </div>
+    <!-- Cerámico Decorativo -->
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm">
+        <img src="{% static 'imagenes/ceramico_decorativo.jpg' %}" class="card-img-top" alt="Cerámico Decorativo">
+        <div class="card-body">
+          <h5 class="card-title">Cerámico Decorativo</h5>
+          <p class="card-text">Para dar un toque especial a tus espacios.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Sección dinámica de productos desde la API -->
+<section class="container my-5">
+  <h3 class="text-center mb-4 text-success">Cerámicos desde la API</h3>
+  <div class="row g-4" id="api-ceramicos"></div>
+</section>
+
+<script src="{% static 'js/productos.js' %}"></script>
+{% endblock %}

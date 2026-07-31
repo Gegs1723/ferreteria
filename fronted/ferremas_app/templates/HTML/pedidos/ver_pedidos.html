@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Pedidos entre Sucursales - Ferretería Ferramas{% endblock %}
+
+{% block content %}
+<section class="container my-5">
+    <h2 class="text-center mb-4 display-4 fw-bold text-primary">Pedidos entre Sucursales</h2>
+    {% if pedidos %}
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover align-middle">
+                <thead class="table-primary">
+                    <tr>
+                        <th>#</th>
+                        <th>Origen</th>
+                        <th>Destino</th>
+                        <th>Productos</th>
+                        <th>Fecha</th>
+                        <th>Estado</th>
+                        <th>Observaciones</th>
+                        {% if rol == "VENDEDOR" or rol == "BODEGUERO" %}
+                        <th>Acciones</th>
+                        {% endif %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for pedido in pedidos %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ pedido.sucursal_origen }}</td>
+                        <td>{{ pedido.sucursal_destino }}</td>
+                        <td>
+                            <ul class="mb-0">
+                                {% for prod in pedido.productos %}
+                                    <li>
+                                        <strong>{{ prod.codigo }}</strong> - Cantidad: {{ prod.cantidad }}
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </td>
+                        <td>{{ pedido.fecha|date:"d/m/Y H:i" }}</td>
+                        <td>{{ pedido.estado }}</td>
+                        <td>{{ pedido.observaciones }}</td>
+                        {% if rol == "VENDEDOR" %}
+                        <td>
+                            <button class="btn btn-success btn-sm mb-1">Aprobar</button>
+                            <button class="btn btn-danger btn-sm mb-1">Rechazar</button>
+                        </td>
+                        {% elif rol == "BODEGUERO" %}
+                        <td>
+                            <button class="btn btn-primary btn-sm mb-1">Aceptar</button>
+                            <button class="btn btn-warning btn-sm mb-1">Preparar</button>
+                        </td>
+                        {% endif %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <div class="alert alert-info text-center">No hay pedidos registrados.</div>
+    {% endif %}
+</section>
+{% endblock %}

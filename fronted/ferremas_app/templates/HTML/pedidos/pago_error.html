@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}Error en el Pago - Ferretería Ferramas{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+  <div class="alert alert-danger text-center py-5">
+    <h2 class="mb-4"><i class="fas fa-times-circle me-2"></i>Error en el pago</h2>
+    <p class="lead">{{ mensaje|default:"Ocurrió un error inesperado durante el pago. Intenta nuevamente." }}</p>
+    <a href="{% url 'carrito' %}" class="btn btn-outline-danger mt-4">
+      <i class="fas fa-arrow-left me-2"></i>Volver al carrito
+    </a>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Sierras - Ferretería Ferramas{% endblock %}
+
+{% block content %}
+<section class="container my-5">
+  <h2 class="text-center mb-4 display-4 fw-bold text-primary">Sierras</h2>
+  <div class="row g-4">
+    <!-- Sierra Circular -->
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm">
+        <img src="{% static 'imagenes/sierra_circular.jpg' %}" class="card-img-top" alt="Sierra Circular">
+        <div class="card-body">
+          <h5 class="card-title">Sierra Circular</h5>
+          <p class="card-text">Para cortes rectos y precisos en madera.</p>
+        </div>
+      </div>
+    </div>
+    <!-- Sierra de Calar -->
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm">
+        <img src="{% static 'imagenes/sierra_calar.jpg' %}" class="card-img-top" alt="Sierra de Calar">
+        <div class="card-body">
+          <h5 class="card-title">Sierra de Calar</h5>
+          <p class="card-text">Ideal para cortes curvos y detallados.</p>
+        </div>
+      </div>
+    </div>
+    <!-- Sierra de Inglete -->
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm">
+        <img src="{% static 'imagenes/sierra_inglete.jpg' %}" class="card-img-top" alt="Sierra de Inglete">
+        <div class="card-body">
+          <h5 class="card-title">Sierra de Inglete</h5>
+          <p class="card-text">Para cortes angulares precisos.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Sección dinámica de productos desde la API -->
+<section class="container my-5">
+  <h3 class="text-center mb-4 text-success">Sierras desde la API</h3>
+  <div class="row g-4" id="api-sierras"></div>
+</section>
+<script src="{% static 'js/productos.js' %}"></script>
+{% endblock %}

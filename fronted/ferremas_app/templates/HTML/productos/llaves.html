@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Llaves - Ferretería Ferramas{% endblock %}
+
+{% block content %}
+<section class="container my-5">
+  <h2 class="text-center mb-4 display-4 fw-bold text-primary">Llaves</h2>
+  <div class="row g-4">
+    <!-- Llave Inglesa -->
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm">
+        <img src="{% static 'imagenes/llave_inglesa.jpg' %}" class="card-img-top" alt="Llave Inglesa">
+        <div class="card-body">
+          <h5 class="card-title">Llave Inglesa</h5>
+          <p class="card-text">Ajustable para diferentes tamaños de tuercas.</p>
+        </div>
+      </div>
+    </div>
+    <!-- Llave Allen -->
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm">
+        <img src="{% static 'imagenes/llave_allen.jpg' %}" class="card-img-top" alt="Llave Allen">
+        <div class="card-body">
+          <h5 class="card-title">Llave Allen</h5>
+          <p class="card-text">Para tornillos con cabeza hexagonal interna.</p>
+        </div>
+      </div>
+    </div>
+    <!-- Llave de Tubo -->
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm">
+        <img src="{% static 'imagenes/llave_tubo.jpg' %}" class="card-img-top" alt="Llave de Tubo">
+        <div class="card-body">
+          <h5 class="card-title">Llave de Tubo</h5>
+          <p class="card-text">Ideal para trabajos en espacios reducidos.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Sección dinámica de productos desde la API -->
+<section class="container my-5">
+  <h3 class="text-center mb-4 text-success">Llaves desde la API</h3>
+  <div class="row g-4" id="api-llaves"></div>
+</section>
+
+<script src="{% static 'js/productos.js' %}"></script>
+{% endblock %}

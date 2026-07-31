@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Registrar Pedido - Ferretería Ferramas{% endblock %}
+
+{% block content %}
+<section class="container my-5">
+    <h2 class="text-center mb-4 display-4 fw-bold text-primary">Registrar Pedido entre Sucursales</h2>
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            {% if mensaje %}
+                <div class="alert alert-info text-center">{{ mensaje }}</div>
+            {% endif %}
+            <form method="post" class="p-4 border rounded bg-light shadow-sm">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label class="form-label">Origen:</label>
+                    <input type="text" name="sucursal_origen" class="form-control bg-white shadow" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Destino:</label>
+                    <input type="text" name="sucursal_destino" class="form-control bg-white shadow" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Código Producto 1:</label>
+                    <input type="text" name="codigo1" class="form-control bg-white shadow" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Cantidad 1:</label>
+                    <input type="number" name="cantidad1" class="form-control bg-white shadow" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Código Producto 2:</label>
+                    <input type="text" name="codigo2" class="form-control bg-white shadow">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Cantidad 2:</label>
+                    <input type="number" name="cantidad2" class="form-control bg-white shadow">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Observaciones:</label>
+                    <input type="text" name="observaciones" class="form-control bg-white shadow">
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Registrar Pedido</button>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}

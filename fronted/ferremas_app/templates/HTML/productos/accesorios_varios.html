@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Accesorios Varios - Ferretería Ferramas{% endblock %}
+
+{% block content %}
+<section class="container my-5">
+  <h2 class="text-center mb-4 display-4 fw-bold text-primary">Accesorios Varios</h2>
+  <div class="row g-4">
+    <!-- Cinturón de Herramientas -->
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm">
+        <img src="{% static 'imagenes/cinturon_herramientas.jpg' %}" class="card-img-top" alt="Cinturón de Herramientas">
+        <div class="card-body">
+          <h5 class="card-title">Cinturón de Herramientas</h5>
+          <p class="card-text">Mantén tus herramientas al alcance de la mano.</p>
+        </div>
+      </div>
+    </div>
+    <!-- Rodilleras -->
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm">
+        <img src="{% static 'imagenes/rodilleras.jpg' %}" class="card-img-top" alt="Rodilleras">
+        <div class="card-body">
+          <h5 class="card-title">Rodilleras</h5>
+          <p class="card-text">Protección para trabajos en superficies duras.</p>
+        </div>
+      </div>
+    </div>
+    <!-- Tapones para Oídos -->
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm">
+        <img src="{% static 'imagenes/tapones_oidos.jpg' %}" class="card-img-top" alt="Tapones para Oídos">
+        <div class="card-body">
+          <h5 class="card-title">Tapones para Oídos</h5>
+          <p class="card-text">Reducción de ruido para ambientes ruidosos.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Sección dinámica de productos desde la API -->
+<section class="container my-5">
+  <h3 class="text-center mb-4 text-success">Accesorios Varios desde la API</h3>
+  <div class="row g-4" id="api-accesorios-varios"></div>
+</section>
+
+<script src="{% static 'js/productos.js' %}"></script>
+{% endblock %}

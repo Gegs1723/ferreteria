@@ -1,0 +1,304 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}CRUD Productos - Ferretería Ferramas{% endblock %}
+
+{% block content %}
+
+<section class="container my-5">
+  <h2 class="text-center mb-4 display-4 fw-bold text-primary">
+    CRUD de Productos
+  </h2>
+
+  <!-- Formulario en línea -->
+  <form id="form-producto" class="mb-4" enctype="multipart/form-data">
+    <input type="hidden" name="id" id="producto-id" />
+
+    <div class="form-grid">
+      <!-- 1. Datos principales -->
+      <div>
+        <div class="form-group-row">
+          <label for="producto-nombre" class="form-label">Nombre</label>
+          <input
+            type="text"
+            class="form-control ms-2"
+            name="nombre"
+            id="producto-nombre"
+            required
+          />
+        </div>
+        <div class="form-group-row">
+          <label for="producto-descripcion" class="form-label">Descripción</label>
+          <input
+            type="text"
+            class="form-control ms-2"
+            name="descripcion"
+            id="producto-descripcion"
+          />
+        </div>
+        <div class="form-group-row">
+          <label for="producto-imagen" class="form-label">Imagen</label>
+          <input
+            type="file"
+            class="form-control ms-2"
+            name="imagen"
+            id="producto-imagen"
+            accept="image/*"
+          />
+        </div>
+        <div class="form-group-row">
+          <label for="producto-categoria" class="form-label">Categoría</label>
+          <select
+            class="form-control ms-2"
+            name="categoriaId"
+            id="producto-categoria"
+            required
+          >
+            <option value="">Selecciona categoría</option>
+            <optgroup label="Herramientas Manuales">
+              <option value="1">Martillos</option>
+              <option value="2">Destornilladores</option>
+              <option value="3">Llaves</option>
+              <option value="20">Otro</option>
+            </optgroup>
+            <optgroup label="Herramientas Eléctricas">
+              <option value="4">Taladros</option>
+              <option value="5">Sierras</option>
+              <option value="6">Lijadoras</option>
+              <option value="21">Otro</option>
+            </optgroup>
+            <optgroup label="Materiales de Construcción">
+              <option value="7">Cemento</option>
+              <option value="8">Arena</option>
+              <option value="9">Ladrillos</option>
+              <option value="10">Pinturas</option>
+              <option value="11">Barnices</option>
+              <option value="12">Cerámicos</option>
+              <option value="22">Otro</option>
+            </optgroup>
+            <optgroup label="Equipos de Seguridad">
+              <option value="13">Cascos</option>
+              <option value="14">Guantes</option>
+              <option value="15">Lentes de Seguridad</option>
+              <option value="16">Accesorios Varios</option>
+              <option value="23">Otro</option>
+            </optgroup>
+            <option value="17" class="categoria-negrita">
+              Tornillos y Anclajes
+            </option>
+            <option value="18" class="categoria-negrita">
+              Fijaciones y Adhesivos
+            </option>
+            <option value="19" class="categoria-negrita">
+              Equipos de Medición
+            </option>
+          </select>
+        </div>
+        <div class="form-group-row">
+          <label for="producto-estado" class="form-label">Estado</label>
+          <select
+            class="form-control ms-2"
+            name="estado"
+            id="producto-estado"
+            required
+          >
+            <option value="">Selecciona estado</option>
+            <option value="Activo">Activo</option>
+            <option value="Inactivo">Inactivo</option>
+          </select>
+        </div>
+        <div class="form-group-row">
+          <label for="producto-stock" class="form-label">Stock</label>
+          <input
+            type="number"
+            class="form-control ms-2"
+            name="stock"
+            id="producto-stock"
+            required
+          />
+        </div>
+        <div class="form-group-row">
+          <label for="producto-marca" class="form-label">Marca</label>
+          <input
+            type="text"
+            class="form-control ms-2"
+            name="marca"
+            id="producto-marca"
+          />
+        </div>
+        <div class="form-group-row">
+          <label for="producto-modelo" class="form-label">Modelo</label>
+          <input
+            type="text"
+            class="form-control ms-2"
+            name="modelo"
+            id="producto-modelo"
+          />
+        </div>
+        <div class="form-group-row">
+          <label for="producto-codigo-barras" class="form-label">Código de Barras</label>
+          <input
+            type="text"
+            class="form-control ms-2"
+            name="codigoBarras"
+            id="producto-codigo-barras"
+          />
+        </div>
+        <div class="form-group-row">
+          <label for="producto-proveedor" class="form-label">Proveedor</label>
+          <input
+            type="text"
+            class="form-control ms-2"
+            name="proveedor"
+            id="producto-proveedor"
+          />
+        </div>
+      </div>
+      <div>
+        <div class="form-group-row">
+          <label for="producto-color" class="form-label">Color</label>
+          <input
+            type="text"
+            class="form-control ms-2"
+            name="color"
+            id="producto-color"
+          />
+        </div>
+        <div class="form-group-row">
+          <label for="producto-tamano" class="form-label">Tamaño</label>
+          <input
+            type="text"
+            class="form-control ms-2"
+            name="tamano"
+            id="producto-tamano"
+          />
+        </div>
+        <div class="form-group-row">
+          <label for="producto-unidad" class="form-label">Unidad de Medida</label>
+          <input
+            type="text"
+            class="form-control ms-2"
+            name="unidadMedida"
+            id="producto-unidad"
+          />
+        </div>
+        <div class="form-group-row">
+          <label for="producto-ubicacion" class="form-label">Ubicación</label>
+          <input
+            type="text"
+            class="form-control ms-2"
+            name="ubicacion"
+            id="producto-ubicacion"
+          />
+        </div>
+        <div class="form-group-row">
+          <label for="producto-precio" class="form-label">Precio</label>
+          <input
+            type="number"
+            class="form-control ms-2"
+            name="precio"
+            id="producto-precio"
+            step="0.01"
+            required
+          />
+        </div>
+        <div class="form-group-row">
+          <label for="producto-precio-oferta" class="form-label">Precio Oferta</label>
+          <input
+            type="number"
+            class="form-control ms-2"
+            name="precioOferta"
+            id="producto-precio-oferta"
+            step="0.01"
+          />
+        </div>
+        <div class="form-group-row">
+          <label for="producto-oferta" class="form-label">¿En Oferta?</label>
+          <select class="form-control ms-2" name="oferta" id="producto-oferta">
+            <option value="0">No</option>
+            <option value="1">Sí</option>
+          </select>
+        </div>
+        <div class="form-group-row">
+          <label for="producto-destacado" class="form-label">¿Destacado?</label>
+          <select
+            class="form-control ms-2"
+            name="destacado"
+            id="producto-destacado"
+          >
+            <option value="0">No</option>
+            <option value="1">Sí</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div
+      class="form-group-row"
+      style="
+        justify-content: flex-end;
+        margin-top: 1.5rem;
+        margin-bottom: 1.5rem;
+      "
+    >
+      <button
+        type="submit"
+        class="btn btn-primary px-4 py-2"
+        id="btn-guardar"
+        style="width: auto; min-width: 120px"
+      >
+        Agregar
+      </button>
+    </div>
+  </form>
+
+  <!-- Buscador de productos -->
+  <form id="form-busqueda-productos" class="mb-3 d-flex" autocomplete="off">
+    <input
+      type="text"
+      id="buscador-productos"
+      class="form-control me-2"
+      placeholder="Buscar producto por Nombre, Descripción, Categoría, Marca, Código de Barras y/o Proveedor"
+    />
+    <button type="submit" class="btn btn-primary">Buscar</button>
+    <button
+      type="button"
+      id="btn-limpiar-busqueda"
+      class="btn btn-secondary ms-2"
+    >
+      Limpiar
+    </button>
+  </form>
+
+  <!-- Tabla de productos (sin cambios) -->
+  <div class="table-responsive">
+    <table class="table table-bordered align-middle text-center">
+      <thead class="table-light">
+        <tr>
+          <th>ID</th>
+          <th>Acciones</th>
+          <th>Nombre</th>
+          <th>Descripción</th>
+          <th>Imagen</th>
+          <th>Categoría</th>
+          <th>Estado</th>
+          <th>Stock</th>
+          <th>Marca</th>
+          <th>Modelo</th>
+          <th>Código de Barras</th>
+          <th>Proveedor</th>
+          <th>Color</th>
+          <th>Tamaño</th>
+          <th>Unidad</th>
+          <th>Ubicación</th>
+          <th>Precio</th>
+          <th>Precio Oferta</th>
+          <th>Oferta</th>
+          <th>Destacado</th>
+        </tr>
+      </thead>
+      <tbody id="tabla-productos"></tbody>
+    </table>
+  </div>
+</section>
+
+<script src="{% static 'js/crud.js' %}"></script>
+{% endblock %}

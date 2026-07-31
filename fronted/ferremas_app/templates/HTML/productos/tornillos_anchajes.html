@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Tornillos y Anclajes - Ferretería Ferramas{% endblock %}
+
+{% block content %}
+<section class="container my-5">
+  <h2 class="text-center mb-4 display-4 fw-bold text-primary">Tornillos y Anclajes</h2>
+  <div class="row g-4">
+    <!-- Tornillos -->
+    <div class="col-md-6">
+      <div class="card h-100 shadow-sm">
+        <img src="{% static 'imagenes/tornillos.jpg' %}" class="card-img-top" alt="Tornillos">
+        <div class="card-body">
+          <h5 class="card-title">Tornillos</h5>
+          <p class="card-text">Amplia variedad de tornillos para todo tipo de fijaciones.</p>
+        </div>
+      </div>
+    </div>
+    <!-- Anclajes -->
+    <div class="col-md-6">
+      <div class="card h-100 shadow-sm">
+        <img src="{% static 'imagenes/anclajes.jpg' %}" class="card-img-top" alt="Anclajes">
+        <div class="card-body">
+          <h5 class="card-title">Anclajes</h5>
+          <p class="card-text">Anclajes de alta resistencia para aplicaciones seguras.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Sección dinámica de productos desde la API -->
+<section class="container my-5">
+  <h3 class="text-center mb-4 text-success">Tornillos y Anclajes desde la API</h3>
+  <div class="row g-4" id="api-tornillos-anclajes"></div>
+</section>
+<script src="{% static 'js/productos.js' %}"></script>
+{% endblock %}

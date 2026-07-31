@@ -1,0 +1,169 @@
+:root {
+  --color-primary: #073c78;
+  --color-secondary: #d26917;
+  --color-success: #8196b4;
+  --color-dark: #072149;
+  --color-light: #ffffff;
+  --color-accent: #d26917;
+  --color-muted: #6b809a;
+  --color-form: #55667f;
+  --color-form-focus: #8196b4;
+  --spacing-md: 1rem;
+  --shadow: 0 4px 12px rgba(166, 205, 249, 0.08);
+}
+
+/* Estilos base */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--color-light);
+  margin: 0;
+  padding: 0;
+  color: #072149;
+}
+
+/* Header y navegación */
+nav.navbar {
+  background-color: var(--color-primary);
+  transition: all 0.3s ease;
+}
+nav.navbar .navbar-brand, 
+nav.navbar .nav-link, 
+nav.navbar .btn {
+  color: #fff !important;
+  font-weight: 600;
+}
+nav.navbar .nav-link:hover, 
+nav.navbar .btn:hover { color: var(--color-secondary) !important; }
+nav.navbar .btn {
+  border-radius: 30px;
+  padding: 0.4rem 1.2rem;
+  font-size: 0.95rem;
+}
+
+/* Secciones comunes */
+#historia, #featured-products {
+  background-color: #fff;
+  padding: 3rem 2rem;
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  margin: 3rem auto;
+  animation: fadeIn 1s ease;
+  max-width: 900px;
+}
+#featured-products { max-width: 1200px; margin-bottom: 5rem; }
+#historia h2, #featured-products h2 {
+  text-align: center;
+  margin-bottom: 1.8rem;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+/* Productos */
+.products-grid {
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto;
+  padding-bottom: 1rem;
+  scroll-snap-type: x mandatory;
+}
+.product-card {
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+  width: 260px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  padding: 1rem;
+  transition: all 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  animation: fadeInUp 0.6s ease;
+  border: 1px solid var(--color-muted);
+}
+.product-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(7, 60, 120, 0.15);
+}
+.product-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+}
+.discount-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background-color: var(--color-secondary);
+  color: white;
+  font-weight: 700;
+  padding: 0.3rem 0.7rem;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(7,60,120,0.15);
+}
+.price { font-weight: 700; color: var(--color-success); font-size: 1.1rem; }
+.old-price { text-decoration: line-through; color: var(--color-muted); margin-left: 8px; }
+.product-card button {
+  background-color: var(--color-primary);
+  color: white;
+  padding: 0.6rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: 700;
+  margin-top: 1rem;
+  transition: background-color 0.3s ease;
+}
+.product-card button:hover { background-color: var(--color-secondary); }
+.product-card button:focus {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* Carrito */
+#carrito-container {
+  max-width: 300px;
+  background-color: #fff;
+  padding: 1rem;
+  box-shadow: var(--shadow);
+  border-radius: 8px;
+  position: fixed;
+  right: 20px;
+  top: 80px;
+  z-index: 100;
+  border: 1px solid var(--color-muted);
+}
+
+/* Footer */
+.footer {
+  background: var(--color-dark);
+  color: white;
+  padding: 40px 0 20px;
+}
+
+/* Formularios */
+.form-control {
+  background-color: var(--color-form) !important;
+  color: #fff !important;
+  border: 1px solid var(--color-form-focus);
+}
+.form-control:focus {
+  background-color: var(--color-form-focus) !important;
+  border-color: var(--color-secondary);
+  box-shadow: 0 0 0 0.2rem rgba(210,105,23,.15);
+}
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+@media (max-width: 768px) {
+  .products-grid { gap: 1rem; }
+  .product-card { width: 80vw; max-width: 300px; }
+  .form-grid { grid-template-columns: 1fr; }
+}
+
+/* Animaciones */
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }

@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+{% block title %}Pago Exitoso - Ferretería Ferramas{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+  <h2 class="mb-4 text-success"><i class="fas fa-check-circle me-2"></i>¡Pago realizado con éxito!</h2>
+  <div class="mb-3">
+    <label for="selector-moneda-boleta" class="form-label">Moneda:</label>
+    <select id="selector-moneda-boleta" class="form-select" style="max-width:200px;display:inline-block;">
+      <option value="clp">Pesos Chilenos (CLP)</option>
+      <option value="usd">Dólares (USD)</option>
+    </select>
+  </div>
+  <div id="boleta-pago" class="card p-4 shadow"></div>
+  <a href="/" id="btn-volver-tienda" class="btn btn-primary mt-4">
+    <i class="fas fa-store me-2"></i>Volver a la tienda
+  </a>
+</div>
+{% if detalle_pago %}
+<script id="detalle-pago-backend" type="application/json">
+{{ detalle_pago|safe }}
+</script>
+{% endif %}
+
+<script>
+async function obtenerValorDolar() {
+  let valor = localStorage.getItem('valorDolar');
+  if (valor) return parseFloat(valor);
+  const res = await fetch('https://mindicador.cl/api/dolar');
+  const data = await res.json();
+  valor = data.serie[0].valor;
+  localStorage.setItem('valorDolar', valor);
+  return valor;
+}
+
+function formatearMoneda(valor, moneda, valorDolar) {
+  if (moneda === 'usd') {
+    return 'USD $' + (valor / valorDolar).toFixed(2);
+  }
+  return valor.toLocaleString('es-CL', { style: 'currency', currency: 'CLP' });
+}
+
+async function renderBoleta(moneda) {
+  const boleta = document.getElementById('boleta-pago');
+  let detalle = JSON.parse(localStorage.getItem('detallePago'));
+  if ((!detalle || !detalle.carrito || detalle.carrito.length === 0) && document.getElementById('detalle-pago-backend')) {
+    detalle = JSON.parse(document.getElementById('detalle-pago-backend').textContent);
+  }
+  if (!detalle || !detalle.carrito || detalle.carrito.length === 0) {
+    boleta.innerHTML = "<p>No hay información de pago disponible.</p>";
+    return;
+  }
+  const valorDolar = await obtenerValorDolar();
+  let totalSinDescuento = detalle.carrito.reduce((sum, item) => sum + item.price * item.cantidad, 0);
+  let cantidad = detalle.carrito.reduce((sum, item) => sum + item.cantidad, 0);
+  let descuento = cantidad > 4 ? totalSinDescuento * 0.10 : 0;
+  let totalConDescuento = totalSinDescuento - descuento;
+  let html = `<h4>Detalle de la compra</h4>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Producto</th>
+          <th>Cantidad</th>
+          <th>Precio unitario</th>
+          <th>Subtotal</th>
+        </tr>
+      </thead>
+      <tbody>`;
+  detalle.carrito.forEach(item => {
+    html += `<tr>
+      <td>${item.name}</td>
+      <td>${item.cantidad}</td>
+      <td>${formatearMoneda(item.price, moneda, valorDolar)}</td>
+      <td>${formatearMoneda(item.price * item.cantidad, moneda, valorDolar)}</td>
+    </tr>`;
+  });
+  html += `</tbody></table>
+    <div class="mb-2">Total sin descuento: <span class="fw-bold">${formatearMoneda(totalSinDescuento, moneda, valorDolar)}</span></div>
+    <div class="mb-2">Descuento: <span class="fw-bold text-success">-${formatearMoneda(descuento, moneda, valorDolar)}</span></div>
+    <h5 class="text-end">Total pagado: <span class="text-success fw-bold">${formatearMoneda(totalConDescuento, moneda, valorDolar)}</span></h5>`;
+  boleta.innerHTML = html;
+}
+
+// Limpia el carrito y actualiza el contador
+function limpiarCarritoFrontend() {
+  localStorage.removeItem('carritoFerramas');
+  localStorage.removeItem('detallePago');
+  if (document.getElementById('contador-carrito')) {
+    document.getElementById('contador-carrito').textContent = '0';
+    document.getElementById('contador-carrito').style.display = 'none';
+  }
+}
+
+document.addEventListener('DOMContentLoaded', async function() {
+  let moneda = localStorage.getItem('monedaSeleccionada') || 'clp';
+  const selector = document.getElementById('selector-moneda-boleta');
+  selector.value = moneda;
+  await renderBoleta(moneda);
+
+  selector.addEventListener('change', async function() {
+    moneda = selector.value;
+    localStorage.setItem('monedaSeleccionada', moneda);
+    await renderBoleta(moneda);
+  });
+
+  limpiarCarritoFrontend();
+});
+</script>
+{% endblock %}
